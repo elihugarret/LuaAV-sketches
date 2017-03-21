@@ -1,6 +1,7 @@
 (clear)
-(clear-colour 1)
+(clear-colour 0)
 
+(blur 0.)
 ;(hint-none)
 ;(hint-wire)
 ;(hint-points)
@@ -9,7 +10,7 @@
 (line-width 1)
 
 (define (x-light) 
-    (light-diffuse 0.2 (vector 0.6 0 1))
+    (light-diffuse 1 (vector 1 1 0))
     (light-position l (vector (* 10(cos(time))) 50 80))        
     (y))
 
@@ -29,19 +30,19 @@
     (translate (vector 0 0 0))
     (hint-cast-shadow)
     (with-primitive obj1
-    ;(wire-colour (vector 0 1 1 0.01)) 
+    (wire-colour (vector 1 0 1 )) 
         (pdata-map! (lambda (p)
-            (vadd (vmul (hsrndvec) 0.03) p))
+            (vadd (vmul (srndvec) 0.008) p))
         "p")))
 
 (with-state
     (rotate (vector 290 10 0))     
     (with-primitive obj
-    ;(normal-colour (vector 0 1 1 0.2)) 
+    (wire-colour (vector 1 0 1 0.9)) 
         (pdata-map! (lambda (p)
-            (vadd (vmul (hsrndvec) 0.03) p))
+            (vadd (vmul (srndvec) 0.003) p))
         "p"))))
 
-(fog (vector 0 1 1) 0.09 1 1000)
+(fog (vector 1 0 1) 0.4 1 1000)
 
 (every-frame (x-light))
